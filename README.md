@@ -1,4 +1,4 @@
 # Datathon Schneider Electric
 
 # Presentació
-Aquest es el repositori del repte de `Schneider Electric` a la Datathon 2025. Realitzat per Martí Puig, Nuria Pastor, Yunkai Chen i Sebastián Luna.
+Aquest es el repositori del repte de [`Schneider Electric`](https://github.com/data-students/datathon2025-challenges/tree/main/Schneider%20Electric) a la Datathon 2025. Realitzat per Martí Puig, Nuria Pastor, Yunkai Chen i Sebastián Luna.
