@@ -1,3 +1,8 @@
+def warn(*args, **kwargs): #per evitar warnings molestos de sklearn
+    pass
+import warnings
+warnings.warn = warn
+
 from sklearn.ensemble import RandomForestClassifier #type:ignore
 from sklearn.model_selection import train_test_split #type:ignore
 import pandas as pd #type:ignore
