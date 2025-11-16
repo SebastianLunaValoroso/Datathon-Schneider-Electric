@@ -30,3 +30,17 @@ def build_model(num_estimadors:int,x_train:pd.DataFrame,y_train:pd.DataFrame,x_t
     model_rf.fit(x_train,y_train)
     performance_score:float = model_rf.score(x_test,y_test)
     return (model_rf,performance_score)
+
+def split_variables_and_answer_with_fixed_attribute_value(index_primera_variable:int,index_darrera_variable:int,atribute_column_name:str,cuantil:float,mida_model_perc:float,dades_csv:str)->tuple[pd.DataFrame,pd.DataFrame,pd.DataFrame,pd.DataFrame]:
+    """Retorna 4 DataFrames (Variables to Train, Variables to Check, Answers to Train, Answers to Check) fixant el valor d'un atribut
+    
+    :param: index_primera_variable, index_darrera_variable, index_resposta: serveixen per seleccionar les columnes de les 
+    variables de dades de la manera seguënt dades[index_primera_variable,index_darrera_variable+1]
+
+    :param: mida_model_perc: El percentage de les filas de dades que s'utilitzaran per el model, la part restant servirán per un check del model
+    """
+    atribute_fixed_dataframe = pd.read_csv(dades_csv, usecols=range(index_primera_variable,index_darrera_variable+1))
+    atribute_fixed_dataframe = atribute_fixed_dataframe[atribute_fixed_dataframe[atribute_column_name] > atribute_fixed_dataframe[atribute_column_name].quantile(cuantil)]
+    x = atribute_fixed_dataframe.drop("target_variable", axis=1)
+    y = atribute_fixed_dataframe["target_variable"]
+    return train_test_split(x, y, test_size = 1-mida_model_perc, random_state = 1)
